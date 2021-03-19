@@ -1,9 +1,18 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  display: flex;
-  width: 100vw;
   height: 100vh;
-  justify-content: center;
-  align-items: center;
+  max-width: 992px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+
+  section {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6.25rem;
+    align-content: center;
+  }
 `
