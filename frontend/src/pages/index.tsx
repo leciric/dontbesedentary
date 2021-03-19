@@ -28,7 +28,7 @@ export default function Home(props: HomeProps): JSX.Element {
     >
       <Container>
         <Head>
-          <title>Início | Move.it</title>
+          <title>Início | DBS</title>
         </Head>
         <ExperienceBar />
         <CountdownProvider>
