@@ -1,4 +1,4 @@
-# 🗺 devRadar
+# ⏰ don't be sedentary
 
 don't be sedentary is going to be a PWA, that uses Pomodoro's technique with the aim to improve our productivity time.
 
