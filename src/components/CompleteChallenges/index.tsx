@@ -6,7 +6,7 @@ export function CompletedChallenges(): JSX.Element {
   const { level } = useContext(ChallengesContext)
   return (
     <Container>
-      <span>Desafios complestos</span>
+      <span>Desafios completos</span>
       <span>{level}</span>
     </Container>
   )

@@ -5,6 +5,7 @@ import { ExperienceBar } from '../components/ExperienceBar'
 import { Profile } from '../components/Profile'
 import { ChallengeBox } from '../components/ChallengeBox'
 import { GetServerSideProps } from 'next'
+import { getSession } from 'next-auth/client'
 
 import Head from 'next/head'
 
@@ -17,6 +18,13 @@ interface HomeProps {
   level: number
   currentExperience: number
   challengesCompleted: number
+  session: {
+    user: {
+      email: string
+      name: string
+      image: string
+    }
+  }
 }
 
 export default function Home(props: HomeProps): JSX.Element {
@@ -34,7 +42,7 @@ export default function Home(props: HomeProps): JSX.Element {
         <CountdownProvider>
           <section>
             <div>
-              <Profile />
+              <Profile user={props.session.user} />
               <CompletedChallenges />
               <Countdown />
             </div>
@@ -49,10 +57,19 @@ export default function Home(props: HomeProps): JSX.Element {
 }
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
+  const session = await getSession(ctx)
   const { level, currentExperience, challengesCompleted } = ctx.req.cookies
-
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false
+      }
+    }
+  }
   return {
     props: {
+      session,
       level: Number(level),
       currentExperience: Number(currentExperience),
       challengesCompleted: Number(challengesCompleted)

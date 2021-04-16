@@ -4,6 +4,8 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
 
+  position: relative;
+
   & > img {
     width: 5.5rem;
     height: 5.5rem;
@@ -27,5 +29,11 @@ export const Container = styled.div`
 
   div p img {
     margin-right: 0.5rem;
+  }
+
+  svg {
+    position: absolute;
+    right: 0;
+    cursor: pointer;
   }
 `
