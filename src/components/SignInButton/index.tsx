@@ -10,7 +10,7 @@ export function SignInButton(): JSX.Element {
       type="button"
       onClick={() =>
         signIn('github', {
-          callbackUrl: process.env.CALLBACK_URL
+          callbackUrl: `${window.location.origin}/dashboard`
         })
       }
     >
