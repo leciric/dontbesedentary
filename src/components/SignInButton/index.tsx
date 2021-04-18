@@ -6,7 +6,14 @@ import { Button, Content } from './styles'
 
 export function SignInButton(): JSX.Element {
   return (
-    <Button type="button" onClick={() => signIn('github')}>
+    <Button
+      type="button"
+      onClick={() =>
+        signIn('github', {
+          callbackUrl: process.env.CALLBACK_URL
+        })
+      }
+    >
       <Content>
         <FaGithub size="45" />
         Entrar com Github
