@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import React from 'react'
 import { CompletedChallenges } from '../components/CompleteChallenges'
 import { Countdown } from '../components/Countdown'
@@ -58,7 +59,7 @@ export default function Home(props: HomeProps): JSX.Element {
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
   const session = await getSession(ctx)
-  const { level, currentExperience, challengesCompleted } = ctx.req.cookies
+
   if (!session) {
     return {
       redirect: {
@@ -70,9 +71,12 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
   return {
     props: {
       session,
-      level: Number(level),
-      currentExperience: Number(currentExperience),
-      challengesCompleted: Number(challengesCompleted)
+      // @ts-ignore
+      level: session.challenge.level,
+      // @ts-ignore
+      currentExperience: session.challenge.currentExperience,
+      // @ts-ignore
+      challengesCompleted: session.challenge.challengesCompleted
     }
   }
 }
