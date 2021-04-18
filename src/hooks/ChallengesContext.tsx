@@ -56,14 +56,12 @@ export function ChallengesProvider({
 
   useEffect(() => {
     async function getData() {
-      const response = await api.patch('/user', {
+      await api.patch('/user', {
         currentExperience,
         level,
         challengesCompleted,
         activeChallenge
       })
-
-      console.log(response.data)
 
       Cookies.set('level', String(level))
       Cookies.set('currentExperience', String(currentExperience))

@@ -10,7 +10,7 @@ export function SignInButton(): JSX.Element {
       type="button"
       onClick={() =>
         signIn('github', {
-          callbackUrl: 'https://dontbesedentary.vercel.app/dashboard'
+          callbackUrl: 'dontbesedentary.vercel.app/dashboard'
         })
       }
     >

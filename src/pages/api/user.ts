@@ -28,13 +28,6 @@ export default async (
       activeChallenge
     }: Challenge = req.body
 
-    console.log(
-      'data',
-      currentExperience,
-      level,
-      challengesCompleted,
-      activeChallenge
-    )
     const session = await getSession({ req })
 
     const userRef = await fauna.query<User>(
