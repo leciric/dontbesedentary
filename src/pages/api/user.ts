@@ -48,6 +48,6 @@ export default async (
       })
     )
 
-    res.status(200)
+    res.status(200).json({ ok: true })
   }
 }
