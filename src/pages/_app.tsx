@@ -20,7 +20,7 @@ export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
         <meta name="keywords" content="Keywords" />
         <title>{"don't be sedentary"}</title>
 
-        <link rel="manifest" href="/manifest.json" />
+        <link rel="manifest" href="./manifest.json" />
         <link
           href="/favicon-16x16.png"
           rel="icon"

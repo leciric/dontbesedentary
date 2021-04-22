@@ -3,7 +3,7 @@
     "background_color": "#f2f3f5",
     "display": "standalone",
     "scope": "/",
-    "start_url": "https://dontbesedentary-i9xze8ge5-leciric.vercel.app/",
+    "start_url": "/",
     "name": "dont be sedentary",
     "short_name": "DBS",
     "description": "Don't be sedentary is a PWA made to implement pomodoro's technique",
