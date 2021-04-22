@@ -1,7 +1,7 @@
 /* eslint-disable no-new */
 import React, { createContext, ReactNode, useEffect, useState } from 'react'
 import Cookies from 'js-cookie'
-import challenges from '../../challenges.json'
+import challenges from '../../public/challenges.json'
 import { LevelUpModal } from '../components/LevelUpModal'
 import { api } from '../services/api'
 
