@@ -51,6 +51,7 @@ export function ChallengesProvider({
   const experienceToNextLevel = Math.pow((level + 1) * 4, 2)
 
   useEffect(() => {
+    navigator.serviceWorker.register('sw.js')
     Notification.requestPermission()
   }, [])
 
@@ -86,7 +87,7 @@ export function ChallengesProvider({
 
     new Audio('/notification.mp3').play()
 
-    if (Notification.permission === 'granted') {
+    if (window.Notification && Notification.permission === 'granted') {
       new Notification('Novo desafio', {
         body: `Valendo ${challenge.amount} XP`
       })
