@@ -1,7 +1,14 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable no-new */
-import React, { createContext, ReactNode, useEffect, useState } from 'react'
+import React, {
+  createContext,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useState
+} from 'react'
 import Cookies from 'js-cookie'
-import challenges from '../../public/challenges.json'
+import challenges from '../../challenges.json'
 import { LevelUpModal } from '../components/LevelUpModal'
 import { api } from '../services/api'
 
@@ -51,10 +58,6 @@ export function ChallengesProvider({
   const experienceToNextLevel = Math.pow((level + 1) * 4, 2)
 
   useEffect(() => {
-    Notification.requestPermission()
-  }, [])
-
-  useEffect(() => {
     async function getData() {
       await api.patch('/user', {
         currentExperience,
@@ -69,6 +72,18 @@ export function ChallengesProvider({
     }
     getData()
   }, [level, currentExperience, challengesCompleted])
+
+  const showNotification = useCallback(async ({ amount }: Challenge) => {
+    Notification.requestPermission(result => {
+      if (result === 'granted') {
+        navigator.serviceWorker.ready.then(registration => {
+          registration.showNotification('Novo desafio', {
+            body: `Valendo ${amount} XP`
+          })
+        })
+      }
+    })
+  }, [])
 
   function levelUp() {
     setLevel(level + 1)
@@ -86,19 +101,8 @@ export function ChallengesProvider({
 
     new Audio('/notification.mp3').play()
 
-    if (window.Notification && Notification.permission === 'granted') {
-      navigator.serviceWorker.ready.then(registration => {
-        registration.showNotification('Novo desafio', {
-          body: `Valendo ${challenge.amount} XP`
-        })
-      })
-      // ServiceWorkerRegistration.showNotification('Novo desafio', {
-      //   body: `Valendo ${challenge.amount} XP`
-      // })
-      // new Notification('Novo desafio', {
-      //   body: `Valendo ${challenge.amount} XP`
-      // })
-    }
+    // @ts-ignore
+    showNotification(challenge)
   }
 
   function completeChallenge() {
