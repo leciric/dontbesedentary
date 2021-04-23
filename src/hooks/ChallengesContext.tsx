@@ -51,7 +51,6 @@ export function ChallengesProvider({
   const experienceToNextLevel = Math.pow((level + 1) * 4, 2)
 
   useEffect(() => {
-    navigator.serviceWorker.register('sw.js')
     Notification.requestPermission()
   }, [])
 
@@ -88,9 +87,17 @@ export function ChallengesProvider({
     new Audio('/notification.mp3').play()
 
     if (window.Notification && Notification.permission === 'granted') {
-      new Notification('Novo desafio', {
-        body: `Valendo ${challenge.amount} XP`
+      navigator.serviceWorker.ready.then(registration => {
+        registration.showNotification('Novo desafio', {
+          body: `Valendo ${challenge.amount} XP`
+        })
       })
+      // ServiceWorkerRegistration.showNotification('Novo desafio', {
+      //   body: `Valendo ${challenge.amount} XP`
+      // })
+      // new Notification('Novo desafio', {
+      //   body: `Valendo ${challenge.amount} XP`
+      // })
     }
   }
 
