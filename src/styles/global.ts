@@ -18,6 +18,10 @@ export default createGlobalStyle`
   }
 }
 
+@font-face {
+  font-display: swap;
+}
+
 body {
   background: ${props => props.theme.colors.background};
   color: ${props => props.theme.colors.text};

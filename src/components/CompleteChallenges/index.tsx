@@ -3,11 +3,11 @@ import { ChallengesContext } from '../../hooks/ChallengesContext'
 import { Container } from './styles'
 
 export function CompletedChallenges(): JSX.Element {
-  const { level } = useContext(ChallengesContext)
+  const { challengesCompleted } = useContext(ChallengesContext)
   return (
     <Container>
       <span>Desafios completos</span>
-      <span>{level}</span>
+      <span>{challengesCompleted}</span>
     </Container>
   )
 }
